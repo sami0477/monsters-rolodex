@@ -1,25 +1,46 @@
+import React, { Component } from 'react'
+// Import Assets
 import logo from './logo.svg';
-import './App.css';
+import './App.css'; 
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+// Using class compnent we get acces to state
+// State is an Object with properties
+// super() calls constructor function onto our compnent class giving us access to this.state on out class App
+
+class App extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      monsters: [
+        {
+          name: 'Frankenstien'
+        },
+        {
+          name: 'Dracula'
+        },
+        {
+          name: 'Zombie'
+        }
+      ]
+    }
+
+  }
+
+  // .map returns us the return of whatever function that we pass to it itterating over every elements 
+  // in the array
+
+  render() {
+    return (
+      <div className="App">
+        { 
+          this.state.monsters.map( monster => <h1>{ monster.name }</h1> )  
+        } 
+       </div>
+    )
+  }
 }
+
 
 export default App;
