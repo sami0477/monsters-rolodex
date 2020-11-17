@@ -1,46 +1,61 @@
 import React, { Component } from 'react'
-// Import Assets
-import logo from './logo.svg';
-import './App.css'; 
+import './App.css';
+import { CardList } from './components/card-list/card-list.component' 
 
 
-// Using class compnent we get acces to state
-// State is an Object with properties
-// super() calls constructor function onto our compnent class giving us access to this.state on out class App
 
 class App extends Component {
+  
   constructor() {
-    super();
-
+    super();  
     this.state = {
-      monsters: [
-        {
-          name: 'Frankenstien'
-        },
-        {
-          name: 'Dracula'
-        },
-        {
-          name: 'Zombie'
-        }
-      ]
+      monsters: [],
+      searchField: ''
     }
-
   }
-
-  // .map returns us the return of whatever function that we pass to it itterating over every elements 
-  // in the array
+  
+  componentDidMount() {
+    fetch('https://jsonplaceholder.typicode.com/users')
+    .then(response => response.json())
+    .then(users => this.setState( { monsters: users } ))
+  }
 
   render() {
     return (
       <div className="App">
-        { 
-          this.state.monsters.map( monster => <h1>{ monster.name }</h1> )  
-        } 
-       </div>
+        <input 
+        onChange={e => {
+          this.setState( { searchField: e.target.value }, () => console.log(this.state));
+        }} 
+        type='search' 
+        placeholder='Search Monsters' 
+        />
+        <CardList monsters={this.state.monsters} /> 
+      </div>
     )
   }
 }
 
 
 export default App;
+
+
+// Import Assets
+// Using class compnent we get acces to state
+// super() calls constructor function onto our compnent class giving 
+// us access to this.state on out class App
+// State is an Object with properties
+// Mounting is when react puts our component on the page for the 
+// first time it calls a block of code we write
+// Fetch() grabs the data from the given url and returns a promise
+// Promise gives us a response
+// Returns response in json format 
+// Assigning users data to monsters and pushing it to the monsters array
+// e => () represents the synthetic even occuring at the input field
+// setState lags one letter behind when entering the value because
+// it is an asynchronus call so it happend almost immediately
+// Running the rest of the code after an asynchronous action or event
+// is something that actually takes indefinite amount of time so js runs the
+// rest of the code after and when the asynchronous event finishes it then 
+// runs the finished event so to solve the lag behind issue of the input we 
+// 
