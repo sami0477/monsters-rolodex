@@ -10,6 +10,9 @@
         "deploy": "gh-pages -d build"
     }
 }
+- Run yarn deploy in terminal
+- go to settings of repo and set "Source" to be "gh-pages branch" --->  "/docs" 
+
 
 # Getting Started with Create React App
 
