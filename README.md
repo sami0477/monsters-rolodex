@@ -1,9 +1,15 @@
 # Chapter 3 Video 12 3:00 Minutes
 
 # Deployment on Github Page 
-- 
--
--
+- Copy the SSH Key of the project repo
+- Add GH Pages by running ( yarn add gh-pages )
+- Add Following to the Package.json {
+    "homepage": "https://[username].github.io/[reponame]",
+    "scripts: {
+        "predeploy": "yarn build",
+        "deploy": "gh-pages -d build"
+    }
+}
 
 # Getting Started with Create React App
 
